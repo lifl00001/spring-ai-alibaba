@@ -41,5 +41,5 @@ otel:
       # endpoint: "http://localhost:3000/api/public/otel" # 🏠 Local deployment (>= v3.22.0)
       headers:
         # Replace `YOUR_BASE64_ENCODED_CREDENTIALS` with your Base64-encoded `public_key:secret_key`.
-        Authorization: "Basic ${YOUR_BASE64_ENCODED_CREDENTIALS}"
+        Authorization: "Basic pk-lf-29ba1faf-4f0a-4bf7-8e49-bdb26a0c40ba:sk-lf-145df0e3-af90-451f-b086-67da5ac04f8b"
       protocol: http/protobuf

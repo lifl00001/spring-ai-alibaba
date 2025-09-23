@@ -1,0 +1,32 @@
+@startuml
+title Plan Object Lifecycle
+
+participant "PlannerNode" as Planner
+participant "State" as State
+participant "ResearcherNode_0" as R0
+participant "ResearcherNode_1" as R1
+participant "ReporterNode" as Reporter
+
+== 计划生成 ==
+Planner -> State : 存储 current_plan
+note right: 包含多个研究步骤\n每个步骤分配给特定节点
+
+== 并行执行 ==
+R0 -> State : 获取 current_plan
+R0 -> R0 : 查找分配的步骤
+R0 -> State : 更新步骤状态为 processing
+R0 -> R0 : 执行研究任务
+R0 -> State : 存储执行结果和完成状态
+
+R1 -> State : 获取 current_plan
+R1 -> R1 : 查找分配的步骤
+R1 -> State : 更新步骤状态为 processing
+R1 -> R1 : 执行研究任务
+R1 -> State : 存储执行结果和完成状态
+
+== 结果汇总 ==
+Reporter -> State : 获取完整的 current_plan
+Reporter -> Reporter : 汇总所有步骤的执行结果
+Reporter -> State : 生成最终报告
+
+@enduml

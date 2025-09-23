@@ -1,0 +1,19 @@
+@startuml
+title Strategy Pattern Workflow
+
+participant "RagNode" as RagNode
+participant "策略列表" as Strategies
+participant "FusionStrategy" as Fusion
+participant "检索系统" as Retrieval
+participant "LLM" as LLM
+
+RagNode -> Strategies : applyStrategies(query)
+Strategies -> Retrieval : 执行各个策略的检索
+Retrieval --> Strategies : 返回检索结果
+Strategies -> Fusion : 融合多个策略结果
+Fusion --> Strategies : 返回融合结果
+Strategies -> LLM : 结合检索结果生成回答
+LLM --> Strategies : 返回生成结果
+Strategies --> RagNode : 返回最终结果
+
+@enduml

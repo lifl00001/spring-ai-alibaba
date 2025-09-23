@@ -15,7 +15,7 @@ spring:
   # Redis 配置
   data:
     redis:
-      enabled: false
+      enabled: true
       host: localhost
       port: 6379
       password: ${REDIS-PASSWORD}
@@ -36,7 +36,7 @@ spring:
 
     mcp:
       client:
-        enabled: false
+        enabled: true
         type: ASYNC
     alibaba:
       toolcalling:
@@ -94,7 +94,7 @@ spring:
             general_research:
               primary: tavily
         mcp:
-          enabled: false
+          enabled: true
           config-location: classpath:mcp-config.json
         parallel-node-count:
           researcher: 4
@@ -122,4 +122,6 @@ spring:
 logging:
   level:
     com.alibaba.cloud.ai.example.deepresearch: debug
+
+
 

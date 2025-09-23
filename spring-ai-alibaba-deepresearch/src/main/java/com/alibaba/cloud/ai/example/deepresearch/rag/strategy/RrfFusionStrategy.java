@@ -38,7 +38,6 @@ import java.util.stream.Collectors;
 @Component
 @ConditionalOnProperty(prefix = "spring.ai.alibaba.deepresearch.rag", name = "enabled", havingValue = "true")
 public class RrfFusionStrategy implements FusionStrategy, DocumentPostProcessor {
-
 	private final int k;
 
 	private final int defaultTopK;
@@ -46,8 +45,8 @@ public class RrfFusionStrategy implements FusionStrategy, DocumentPostProcessor 
 	private final double defaultThreshold;
 
 	public RrfFusionStrategy(@Value("${rag.fusion.rrf.k-constant:60}") int k,
-			@Value("${rag.pipeline.rerankTopK:10}") int defaultTopK,
-			@Value("${rag.pipeline.rerankThreshold:0.1}") double defaultThreshold) {
+							 @Value("${rag.pipeline.rerankTopK:10}") int defaultTopK,
+							 @Value("${rag.pipeline.rerankThreshold:0.1}") double defaultThreshold) {
 		this.k = k;
 		this.defaultTopK = defaultTopK;
 		this.defaultThreshold = defaultThreshold;
@@ -115,12 +114,12 @@ public class RrfFusionStrategy implements FusionStrategy, DocumentPostProcessor 
 
 		// 根据 RRF 分数对文档ID进行降序排序，并应用过滤条件
 		return rrfScores.entrySet()
-			.stream()
-			.sorted(Map.Entry.<String, Double>comparingByValue().reversed())
-			.filter(entry -> entry.getValue() >= threshold)
-			.limit(topK)
-			.map(entry -> documentMap.get(entry.getKey()))
-			.collect(Collectors.toList());
+				.stream()
+				.sorted(Map.Entry.<String, Double>comparingByValue().reversed())
+				.filter(entry -> entry.getValue() >= threshold)
+				.limit(topK)
+				.map(entry -> documentMap.get(entry.getKey()))
+				.collect(Collectors.toList());
 	}
 
 	/**
@@ -154,6 +153,7 @@ public class RrfFusionStrategy implements FusionStrategy, DocumentPostProcessor 
 	 */
 	private String getDocumentSource(Document document) {
 		Object sourceType = document.getMetadata().get("source_type");
+
 		if (sourceType != null) {
 			return sourceType.toString();
 		}

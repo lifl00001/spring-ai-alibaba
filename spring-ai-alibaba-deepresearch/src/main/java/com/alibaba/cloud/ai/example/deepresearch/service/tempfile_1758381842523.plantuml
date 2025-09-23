@@ -1,0 +1,27 @@
+@startuml
+title RAG Nodes in DeepResearch Flow
+
+[*] --> coordinator
+coordinator --> rewrite_multi_query
+rewrite_multi_query --> background_investigator
+rewrite_multi_query --> user_file_rag
+user_file_rag --> background_investigator
+background_investigator --> planner
+planner --> information
+information --> research_team
+research_team --> professional_kb_decision
+professional_kb_decision --> professional_kb_rag
+professional_kb_rag --> reporter
+reporter --> [*]
+
+note right of user_file_rag
+  用户文件RAG节点
+  使用RagNodeService创建
+end note
+
+note right of professional_kb_rag
+  专业知识库RAG节点
+  使用RagNodeService创建
+end note
+
+@enduml

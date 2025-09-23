@@ -1,0 +1,23 @@
+@startuml
+title RAG Node Creation Process
+
+participant "RagNodeService" as Service
+participant "HybridRagProcessor" as Hybrid
+participant "Strategies" as Strategies
+participant "RagNode" as RagNode
+
+== 用户文件RAG节点创建 ==
+Service -> Service : createUserFileRagNode()
+Service -> Service : 检查 hybridRagProcessor
+Service -> Hybrid : 如果存在，创建 RagNode(hybridRagProcessor)
+Service -> Strategies : 如果不存在，使用传统策略
+Service -> RagNode : 创建 RagNode(策略列表)
+
+== 专业知识库RAG节点创建 ==
+Service -> Service : createProfessionalKbRagNode()
+Service -> Service : 检查 hybridRagProcessor
+Service -> Hybrid : 如果存在，创建 RagNode(hybridRagProcessor)
+Service -> Strategies : 如果不存在，使用专业库策略
+Service -> RagNode : 创建 RagNode(策略列表)
+
+@enduml

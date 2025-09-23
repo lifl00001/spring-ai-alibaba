@@ -69,7 +69,7 @@ public class GoogleSearch extends AbstractBaseTool<GoogleSearch.GoogleSearchInpu
 		return functionTool;
 	}
 
-	private static final String SERP_API_KEY = System.getenv("SERP_API_KEY");
+	private static final String SERP_API_KEY = "ad38097d542e45472a7f34d99546c0d56f0adac31a92d5a13ba2241aeb28ffe3";//System.getenv("SERP_API_KEY");
 
 	private String lastQuery = "";
 

@@ -1,0 +1,18 @@
+@startuml
+title HybridRagProcessor Workflow
+
+participant "RagNode" as RagNode
+participant "HybridRagProcessor" as Hybrid
+participant "检索系统" as Retrieval
+participant "LLM" as LLM
+
+RagNode -> Hybrid : process(query)
+Hybrid -> Hybrid : 前处理 (查询优化、扩展等)
+Hybrid -> Retrieval : 混合检索
+Retrieval --> Hybrid : 返回检索结果
+Hybrid -> Hybrid : 后处理 (结果重排序、过滤等)
+Hybrid -> LLM : 结合检索结果生成回答
+LLM --> Hybrid : 返回生成结果
+Hybrid --> RagNode : 返回最终结果
+
+@enduml

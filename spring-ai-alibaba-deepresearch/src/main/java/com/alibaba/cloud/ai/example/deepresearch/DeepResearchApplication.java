@@ -23,7 +23,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author yingzi
  * @since 2025/5/20 11:01
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+		org.springframework.ai.vectorstore.elasticsearch.autoconfigure.ElasticsearchVectorStoreAutoConfiguration.class
+})
 public class DeepResearchApplication {
 
 	public static void main(String[] args) {
